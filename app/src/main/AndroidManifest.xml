@@ -29,6 +29,13 @@
 
         </activity>
 
+        <activity android:name=".ui.giahan.GiaHanThietBiActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+
+        </activity>
+
     </application>
 
 </manifest>

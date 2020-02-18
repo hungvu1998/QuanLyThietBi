@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="50dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
+    <TextView
+        android:id="@+id/tvLabelToDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="To date"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvToDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/date_selector"
+        android:text="Click to add To date" />
+
+
+    <TextView
+        android:id="@+id/tvLabelFromDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="10dp"
+        android:text="From date"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvFromDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/date_selector"
+        android:text="Click to add From date" />
+
+
+
+    <Button
+        android:id="@+id/btnOke"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_radius_gg"
+        android:text="Oke"
+        android:textColor="@android:color/background_light" />
+
+</LinearLayout>

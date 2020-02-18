@@ -28,7 +28,7 @@ class SplashActivity : DaggerAppCompatActivity(),SplashNavigator{
 
         viewModel= ViewModelProviders.of(this,providerFactory).get(SplashViewModel::class.java)
         viewModel.setNavigator(this)
-       // viewModel.getNavigator()?.runInThread()
+        viewModel.getNavigator()?.runInThread()
 
 
     }
