@@ -8,66 +8,58 @@ import java.text.SimpleDateFormat
 import java.util.*
 import android.content.DialogInterface
 import android.app.DatePickerDialog
+import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProviders
+import com.example.quanlythietbi.viewmodels.ViewModelProvidersFactory
+import javax.inject.Inject
 
 
+class GiaHanThietBiActivity : DaggerAppCompatActivity(),GiaHanThietBiNavigator{
 
 
+    @Inject
+    lateinit var providerFactory: ViewModelProvidersFactory
 
+    lateinit var viewModel: GiaHanThietBiViewModel
 
-class GiaHanThietBiActivity : DaggerAppCompatActivity(){
-    val DATE_FORMAT = "EEE, MMM d, yyyy"
-    val dateFormatter = SimpleDateFormat(DATE_FORMAT)
-    var callerId  =-1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_giahan_thietbi)
+        viewModel= ViewModelProviders.of(this,providerFactory).get(GiaHanThietBiViewModel::class.java)
+        viewModel.setNavigator(this)
+        viewModel.getDateCurrent(R.id.tvToDate)
+
         tvToDate?.setOnClickListener {
-            showDatePickerDialog(R.id.tvToDate, tvToDate?.text.toString().trim { it <= ' ' })
+            viewModel.showDatePickerDialog(R.id.tvToDate,this,tvToDate?.text.toString().trim { it <= ' ' })
         }
         tvFromDate?.setOnClickListener {
-            showDatePickerDialog(R.id.tvFromDate, tvFromDate?.text.toString().trim { it <= ' ' })
+            viewModel.showDatePickerDialog(R.id.tvFromDate,this,tvFromDate?.text.toString().trim { it <= ' ' })
         }
 
     }
-     fun showDatePickerDialog(callerId:Int, dateText:String) {
-         this.callerId = callerId
-         var date:Date? = null
-         try
-         {
-             if (dateText == "")
-                 date = Date()
-             else
-                 date = dateFormatter.parse(dateText)
-         }
-         catch (exp:Exception) {
-             date = Date()
-         }
-         val calendar = Calendar.getInstance()
-         calendar.time = date
-         val year = calendar.get(Calendar.YEAR)
-         val month = calendar.get(Calendar.MONTH) // calendar month 0-11
-         val day = calendar.get(Calendar.DATE)
+    override fun setErro() {
+        Toast.makeText(this,"Yêu cầu chọn lại ngày phù hợp", Toast.LENGTH_SHORT).show()
+    }
+    override fun enableButton(boolean: Boolean) {
+        if(boolean){
+            btnOke?.isEnabled=true
+            btnOke?.setBackgroundResource(R.drawable.button_radius_gg)
 
-        val datePicker = DatePickerDialog(this,
-            DatePickerDialog.OnDateSetListener { datePicker, year, month, day -> handleOnDateSet(year, month, day) }, year, month, day)
-         datePicker.setTitle("My date picker")
+        }else{
+            btnOke?.isEnabled=false
+            btnOke?.setBackgroundResource(R.drawable.button_radius_gg_enable)
+        }
+    }
 
-         datePicker.setButton(DatePickerDialog.BUTTON_POSITIVE, "Ok", datePicker)
-         datePicker.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel") { dialogInterface, i ->
-
-
-         }
-         datePicker.show()
-     }
-
-    fun handleOnDateSet(year: Int, month: Int, day: Int) {
-        val date = GregorianCalendar(year, month, day).getTime()
-        val formatedDate = dateFormatter.format(date)
-
+    override fun setText(date:String,callerId:Int) {
         when (callerId) {
-            R.id.tvToDate -> tvToDate.text = formatedDate
-            R.id.tvFromDate -> tvFromDate.text = formatedDate
+            R.id.tvToDate -> tvToDate.text = date
+            R.id.tvFromDate -> tvFromDate.text = date
         }
     }
+
+
+
 }

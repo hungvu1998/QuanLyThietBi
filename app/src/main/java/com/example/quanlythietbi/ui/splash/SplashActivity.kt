@@ -38,7 +38,7 @@ class SplashActivity : DaggerAppCompatActivity(),SplashNavigator{
             override fun run() {
                 try {
 
-                    Thread.sleep(5000)
+                    Thread.sleep(2000)
                     val intent = Intent(this@SplashActivity,LoginActivity::class.java)
                     startActivity(intent)
                     finish()

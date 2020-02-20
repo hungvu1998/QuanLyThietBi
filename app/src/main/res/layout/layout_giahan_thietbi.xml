@@ -45,10 +45,11 @@
     <Button
         android:id="@+id/btnOke"
         android:layout_width="200dp"
+        android:enabled="false"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:background="@drawable/button_radius_gg"
+        android:background="@drawable/button_radius_gg_enable"
         android:text="Oke"
         android:textColor="@android:color/background_light" />
 

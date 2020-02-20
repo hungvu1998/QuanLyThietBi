@@ -29,6 +29,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    dataBinding {
+        enabled = true
+    }
 }
 apply plugin: 'com.google.gms.google-services'
 
@@ -103,8 +106,17 @@ dependencies {
     // optional - Guava support for Room, including Optional and ListenableFuture
     implementation "android.arch.persistence.room:guava:$room_version"
 
+
+    // logger
+    implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
+
     // Test helpers
     testImplementation "android.arch.persistence.room:testing:$room_version"
+
+    // network
+    implementation "com.amitshekhar.android:rx2-android-networking:$rootProject.rx2FastAndroidNetworking"
+    // font
+    implementation "uk.co.chrisjenx:calligraphy:$rootProject.calligraphyVersion"
 
     //firebase
     implementation 'com.google.firebase:firebase-analytics:17.2.2'

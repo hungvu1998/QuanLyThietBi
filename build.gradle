@@ -31,5 +31,8 @@ task clean(type: Delete) {
 ext {
     //dagger
     dagger2Version = '2.16'
+    timberVersion = '4.5.1'
+    rx2FastAndroidNetworking = '1.0.1'
+    calligraphyVersion = '2.2.0'
 
 }
